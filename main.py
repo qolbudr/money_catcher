@@ -163,6 +163,12 @@ def main():
 					if item.f_type == 0:
 						score += 0
 
+			if(item.hitbox[1] >= display_height):
+				money.remove(item)
+				lives -= 1
+				if(lives <= 0):
+					play = False
+
 		for item in jelly:
 			item.draw(window)
 			item.y += item.vel
@@ -171,10 +177,7 @@ def main():
 			if (item.hitbox[0] >= wallet.hitbox[0] - 50) and (item.hitbox[0] <= wallet.hitbox[0] + 50):
 				if wallet.hitbox[1] - 10 <= item.hitbox[1] <= wallet.hitbox[1]:
 					jelly.remove(item)
-					lives -= 1
-					print(lives)
-					if(lives <= 0):
-						play = False
+					score += 5
 
 		message_to_screen("Skor : "+str(score), 50, 30, 20)
 		message_to_screen("Nyawa : "+str(lives), display_width - 60, 30, 20)
